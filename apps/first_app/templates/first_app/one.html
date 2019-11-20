@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>One</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: sans-serif;
+            margin: 30px;
+        }
+
+        p {
+            margin: 50px;
+        }
+
+        input {
+            display: block;
+            margin: 10px;
+        }
+        .messages{
+        border-style: solid;
+        border-color: white;
+        width: 500px;
+        display: block;
+        margin: 50px;
+        }
+        .messages p{
+            margin: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Hello {{user.name}}</h1>
+    <a href='/'>Go Home</a>
+
+    <h2>These are your messages: </h2>
+    
+    
+    
+        {% for message in all_user_messages %}
+            <div class='messages'>
+            <p>{{message.message}}</p>
+            </div>
+        {% endfor %}
+
+    
+
+</body>
+
+</html>

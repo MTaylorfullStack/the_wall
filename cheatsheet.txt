@@ -1,0 +1,14 @@
+csrf_token, must be includen in form!
+
+MultiValueDictKey; Am I referenciong the right names in request.POST? What I am calling this input data on my form?
+
+Context; Am i adding it into my return statement?
+        Print your context, what am I bringing to the temlpate?
+
+URLS; Page Not Found
+    Current URL; Is it what you expect?
+    url_patterns; is the patterns you were expecting?
+
+DOES NOT EXIST: Querying for data that sin't there.
+                Check your query, do you need a get or a filter?
+                What are you querying with?

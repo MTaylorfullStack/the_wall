@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Welcome</title>
+    {% load static %}
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: sans-serif;
+            margin: 30px;
+        }
+
+        .head {
+            margin: 50px;
+            display: block;
+        }
+
+        .subhead {
+            font-size: 16pt;
+        }
+
+        input {
+            display: block;
+            margin: 10px;
+        }
+
+        .messages {
+            border-style: solid;
+            border-color: white;
+            width: 500px;
+            display: block;
+            margin: 50px;
+        }
+
+        .message {
+            margin: 30px;
+            font-size: 14pt;
+        }
+
+        #forms {
+            margin-left: 200px;
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        #posts {
+            display: inline-block;
+            margin-left: 200px;
+        }
+
+        .link {
+            display: inline-block;
+            margin: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class='head'>Welcome to The Message Wall</h1>
+
+    <div id='forms'>
+
+        <p class='subhead'>Add A User! </p>
+        <form action='add_user' method='POST'>
+            {% csrf_token %}
+            Username: <input type='text' name='name'>
+            Email: <input type='text' name='email'>
+            Password: <input type='text' name='password'>
+            <input type='submit' value='submit'>
+        </form>
+
+        <p class='subhead'>Add a Message!</p>
+
+        <form action='add_message' method='POST'>
+            {% csrf_token %}
+            Message: <input type='text' name='mess'>
+            Posted By: <input type='text' name='poster'>
+            <input type='submit' value='submit'>
+        </form>
+
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{>{{ message }}</li>
+                {% endfor %}
+        </ul>
+        {% endif %}
+
+    </div>
+
+    <div id='posts'>
+
+        {% for message in all_messages %}
+
+        <div class='messages'>
+
+            <p class='message'>{{message.message}}</p>
+            <a href="one_user/{{message.poster.id}}">
+                <p class='link'>{{message.poster.name}}</p>
+            </a>
+            <a href="/wall/delete/{{message.id}}">
+                <p class='link'>Delete</p>
+            </a>
+            <p class='link'>Likes: {{message.likes.count}}</p>
+            <form action='/add_like/{{message.id}}' method='POST'>{% csrf_token %}Name:<input type='text'
+                    name='name'><input type='submit' value='like'></form>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+
+
+</body>
+
+</html>

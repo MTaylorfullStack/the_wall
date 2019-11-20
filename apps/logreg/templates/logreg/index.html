@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Log And Reg</title>
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+
+        h1 {
+            margin: 20px;
+        }
+
+        #register {
+            vertical-align: top;
+            display: inline-block;
+            height: 700px;
+            width: 500px;
+            background-color: lightblue;
+        }
+
+        #login {
+            vertical-align: top;
+            display: inline-block;
+            height: 700px;
+            width: 500px;
+            background-color: lightblue;
+        }
+
+        .space {
+            margin: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Hello World</h1>
+
+    <div id=register class=space>
+        <h1>Register</h1>
+        <form method=POST action='/register_user'>
+            {% csrf_token %}
+            First Name: <input type='text' name='first_name'><br>
+            Last Name: <input type='text' name='last_name'><br>
+            Email: <input type='text' name='email'><br>
+            Password: <input type='text' name='password'><br>
+            Confirm Password: <input type='text' name='confirm_password'><br>
+            <input type='submit' value='Create User'>
+
+        </form>
+
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                {% endfor %}
+        </ul>
+        {% endif %}
+
+    </div>
+
+
+
+
+    <div id=login class=space>
+        <h1>Login</h1>
+        <form method=POST action='/login_user'>
+            {% csrf_token %}
+            Email:<input type='text' name='email'>
+            Password:<input type='text' name='password'>
+            <input type='submit' value="submit">
+        </form>
+
+
+    </div>
+
+
+
+
+
+</body>
+
+</html>
