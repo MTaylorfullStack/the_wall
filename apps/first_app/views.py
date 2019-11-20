@@ -18,6 +18,7 @@ def add_user(request):
     print(request.POST)
     errors = User.objects.basic_validator(request.POST)
     if len(errors) > 0:
+        print("hello world")
         for key, value in errors.items():
             messages.error(request, value)
         return redirect('/')
